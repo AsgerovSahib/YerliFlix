@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YerliFlix — Azərbaycan Kino Kataloqu</title>
+  
+  <!-- Favicon and Meta -->
+  <meta name="description" content="YerliFlix — 36 real Azərbaycan filminin müasir, minimalist və interaktiv kino kataloqu. Klassiklərdən müasir yeni dalğaya qədər Azərbaycan kinosu bir ünvanda.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23E50914'/><path d='M35 25 L75 50 L35 75 Z' fill='%23FFFFFF'/></svg>">
+
+  <!-- Google Fonts: Outfit & Inter for high-end cinematic typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== STICKY HEADER ==================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" id="brandLogoHome" aria-label="YerliFlix Ana Səhifə">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 6.47v11.06c0 1.55 1.68 2.52 3.02 1.74l9.59-5.53c1.33-.77 1.33-2.7 0-3.48L7.02 4.73C5.68 3.95 4 4.92 4 6.47z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="logo-yerli">Yerli</span><span class="logo-flix">Flix</span>
+        </div>
+      </a>
+
+      <!-- Quick Section Anchor Links (Desktop) -->
+      <nav aria-label="Əsas naviqasiya">
+        <ul class="nav-links">
+          <li><a href="#heroBanner" class="nav-link active">Vitrin</a></li>
+          <li><a href="#section-my-list" class="nav-link">Siyahım</a></li>
+          <li><a href="#section-all-films" class="nav-link">Bütün filmlər</a></li>
+          <li><a href="#section-classics" class="nav-link">Klassiklər</a></li>
+          <li><a href="#section-folk-comedy" class="nav-link">Xalq Komediyası</a></li>
+          <li><a href="#section-new-wave" class="nav-link">Yeni Dalğa</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="header-actions">
+        <!-- Live Instant Search -->
+        <div class="search-wrapper" id="searchWrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Film adı ilə axtar..." 
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button type="button" class="search-clear-btn" id="searchClearBtn" title="Axtarışı təmizlə" aria-label="Axtarışı təmizlə">✕</button>
+        </div>
+
+        <!-- Genre Dropdown Select (Synced with Pill Bar) -->
+        <div class="genre-dropdown-wrapper">
+          <select id="genreSelect" class="genre-select" aria-label="Janr seçimi">
+            <option value="all">Bütün janrlar</option>
+            <option value="Komediya">Komediya</option>
+            <option value="Musiqili Komediya">Musiqili Komediya</option>
+            <option value="Dram">Dram</option>
+            <option value="Tarixi">Tarixi</option>
+            <option value="Müharibə">Müharibə</option>
+            <option value="Triller">Triller</option>
+            <option value="Fantastika">Fantastika</option>
+            <option value="Qısametrajlı">Qısametrajlı</option>
+          </select>
+          <svg class="genre-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+
+        <!-- "Mənə film seç" Button -->
+        <button type="button" class="btn-random-pick" id="btnRandomPick" title="Seçilmiş janr üzrə təsadüfi film seç">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 18c-.83 0-1.5-.67-1.5-1.5S6.67 15 7.5 15s1.5.67 1.5 1.5S8.33 18 7.5 18zm0-9C6.67 9 6 8.33 6 7.5S6.67 6 7.5 6 9 6.67 9 7.5 8.33 9 7.5 9zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-9c-.83 0-1.5-.67-1.5-1.5S15.67 6 16.5 6s1.5.67 1.5 1.5S17.33 9 16.5 9z"/>
+          </svg>
+          <span>Mənə film seç</span>
+        </button>
+
+        <!-- "Siyahım" Navigation Quick Jump Button with Badge -->
+        <a href="#section-my-list" class="btn-my-list-nav" id="btnMyListNav">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span>Siyahım</span>
+          <span class="badge-count" id="myListBadge">0</span>
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HORIZONTAL SCROLLABLE GENRE PILLS ==================== -->
+  <div class="genre-pills-bar">
+    <div class="genre-pills-container" id="genrePillsContainer">
+      <button type="button" class="genre-pill active" data-genre="all">Bütün janrlar</button>
+      <button type="button" class="genre-pill" data-genre="Komediya">Komediya</button>
+      <button type="button" class="genre-pill" data-genre="Musiqili Komediya">Musiqili Komediya</button>
+      <button type="button" class="genre-pill" data-genre="Dram">Dram</button>
+      <button type="button" class="genre-pill" data-genre="Tarixi">Tarixi</button>
+      <button type="button" class="genre-pill" data-genre="Müharibə">Müharibə</button>
+      <button type="button" class="genre-pill" data-genre="Triller">Triller</button>
+      <button type="button" class="genre-pill" data-genre="Fantastika">Fantastika</button>
+      <button type="button" class="genre-pill" data-genre="Qısametrajlı">Qısametrajlı</button>
+    </div>
+  </div>
+
+  <!-- ==================== HERO BANNER (VITRIN BLOKU) ==================== -->
+  <section class="hero-banner" id="heroBanner">
+    <div class="hero-backdrop-wrapper">
+      <img 
+        id="heroBackdropImg" 
+        class="hero-backdrop-img" 
+        src="https://img.youtube.com/vi/elm0QXqeC88/hqdefault.jpg" 
+        alt="Zəhər tuluğu vitrin arxa planı"
+      >
+      <div class="hero-gradient-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-inner">
+        <div class="hero-badge-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Günün Təqdimatı
+        </div>
+
+        <h1 class="hero-title" id="heroTitle">Zəhər tuluğu</h1>
+
+        <div class="hero-meta">
+          <span class="hero-meta-item" id="heroYear">2021</span>
+          <span class="hero-meta-dot"></span>
+          <span class="hero-genre-badge" id="heroGenre">Dram</span>
+          <span class="hero-meta-dot"></span>
+          <span class="hero-meta-item" id="heroCollection">Yeni Dalğa</span>
+        </div>
+
+        <p class="hero-desc" id="heroDesc">
+          Cəmiyyətdəki haqsızlıqlara sərt və kobud reaksiyalar verən Adilin daxili tənhalığı və həyatını dəyişən bir qadınla tanışlığı əks olunur. Populyar YouTube layihəsindən tammetrajlı filmə çevrilən ekran əsəri dərin emosional təsir bağışlayır.
+        </p>
+
+        <div class="hero-actions">
+          <button type="button" class="btn-primary-hero" id="btnHeroWatch">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span>Ətraflı / İzlə</span>
+          </button>
+          <button type="button" class="btn-secondary-hero" id="btnHeroToggleList">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            <span id="btnHeroToggleListText">Siyahıma əlavə et</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="main-content">
+
+    <!-- Global "No Results" state when search or genre produces 0 matches -->
+    <div class="no-results-block" id="noResultsBlock">
+      <div class="no-results-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+      </div>
+      <h2 class="no-results-title">Uyğun film tapılmadı</h2>
+      <p class="no-results-text">Daxil etdiyiniz axtarış sorğusuna və ya seçilmiş janra uyğun heç bir film tapılmadı. Zəhmət olmasa filtrləri yeniləyin.</p>
+      <button type="button" class="btn-reset-filters" id="btnResetFilters">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M2.5 2v6h6M21.5 22v-6h-6"/>
+          <path d="M22 11.5A10 10 0 0 0 3.2 7.2L2.5 8M2 12.5a10 10 0 0 0 18.8 4.3l.7.7"/>
+        </svg>
+        Filtrləri sıfırla
+      </button>
+    </div>
+
+    <!-- 1. Bölmə: Siyahım -->
+    <section class="film-section" id="section-my-list">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-title-bar"></div>
+          <h2 class="section-title">Siyahım</h2>
+          <span class="section-count" id="count-my-list">(0)</span>
+        </div>
+        <button type="button" class="btn-clear-list" id="btnClearMyList" style="display: none;">
+          Siyahını təmizlə
+        </button>
+      </div>
+      <div class="films-grid" id="grid-my-list">
+        <!-- Rendered dynamically via app.js or empty state shown -->
+      </div>
+    </section>
+
+    <!-- 2. Bölmə: Azərbaycan Kinosu (Bütün Filmlər - 36 film) -->
+    <section class="film-section" id="section-all-films">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-title-bar"></div>
+          <h2 class="section-title">Azərbaycan kinosu</h2>
+          <span class="section-count" id="count-all-films">(36 film)</span>
+        </div>
+      </div>
+      <div class="films-grid" id="grid-all-films">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- 3. Bölmə: Klassiklər (year < 1991) -->
+    <section class="film-section" id="section-classics">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-title-bar"></div>
+          <h2 class="section-title">Klassiklər</h2>
+          <span class="section-count" id="count-classics"></span>
+        </div>
+      </div>
+      <div class="films-grid" id="grid-classics">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- 4. Bölmə: Xalq Komediyası (collection: "Xalq Komediyası") -->
+    <section class="film-section" id="section-folk-comedy">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-title-bar"></div>
+          <h2 class="section-title">Xalq Komediyası</h2>
+          <span class="section-count" id="count-folk-comedy"></span>
+        </div>
+      </div>
+      <div class="films-grid" id="grid-folk-comedy">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- 5. Bölmə: Yeni Dalğa (collection: "Yeni Dalğa") -->
+    <section class="film-section" id="section-new-wave">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-title-bar"></div>
+          <h2 class="section-title">Yeni Dalğa</h2>
+          <span class="section-count" id="count-new-wave"></span>
+        </div>
+      </div>
+      <div class="films-grid" id="grid-new-wave">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== RANDOM FILM MODAL (MƏNƏ FİLM SEÇ) ==================== -->
+  <div class="random-pick-modal-overlay" id="randomPickModalOverlay" role="dialog" aria-modal="true" aria-labelledby="randomModalTitle">
+    <div class="random-pick-card">
+      <div class="random-pick-header">
+        <div class="random-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7.5 18c-.83 0-1.5-.67-1.5-1.5S6.67 15 7.5 15s1.5.67 1.5 1.5S8.33 18 7.5 18zm0-9C6.67 9 6 8.33 6 7.5S6.67 6 7.5 6 9 6.67 9 7.5 8.33 9 7.5 9zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5 4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-9c-.83 0-1.5-.67-1.5-1.5S15.67 6 16.5 6s1.5.67 1.5 1.5S17.33 9 16.5 9z"/>
+          </svg>
+          <span id="randomModalTitle">Günün Təsadüfi Seçimi</span>
+        </div>
+        <button type="button" class="btn-close-random" id="btnCloseRandom" aria-label="Bağla">✕</button>
+      </div>
+
+      <div class="random-pick-body">
+        <div class="random-film-preview">
+          <img id="randomPosterImg" class="random-poster-thumb" src="" alt="Film posteri">
+          <div class="random-info">
+            <h3 class="random-film-title" id="randomFilmTitle">Film Adı</h3>
+            <div class="random-film-meta">
+              <span id="randomFilmYear">0000</span>
+              <span>•</span>
+              <span id="randomFilmGenre">Janr</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="random-actions">
+          <button type="button" class="btn-random-details" id="btnRandomDetails">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Ətraflı Bax / İzlə
+          </button>
+          <button type="button" class="btn-random-again" id="btnRandomAgain">
+            Yenidən seç
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FILM DETAIL MODAL & YOUTUBE PLAYER ==================== -->
+  <div class="film-modal-overlay" id="filmDetailModal" role="dialog" aria-modal="true" aria-labelledby="modalFilmTitle">
+    <div class="film-modal-container">
+      
+      <!-- Close Button -->
+      <button type="button" class="btn-close-modal" id="btnCloseModal" title="Bağla (Esc)" aria-label="Modalı bağla">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Video Player Wrapper (16:9 ratio) -->
+      <div class="modal-video-wrapper" id="modalVideoWrapper">
+        <!-- YouTube iframe will be dynamically mounted here when open, unmounted when closed -->
+      </div>
+
+      <!-- Modal Content Body -->
+      <div class="modal-body">
+        <div class="modal-header-info">
+          <h2 class="modal-film-title" id="modalFilmTitle">Film Başlığı</h2>
+          <div class="modal-tags-row">
+            <span class="modal-tag red" id="modalFilmYear">1990</span>
+            <span class="modal-tag" id="modalFilmGenre">Komediya</span>
+            <span class="modal-tag" id="modalFilmCollection">Klassiklər</span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p class="modal-description" id="modalFilmDesc">
+          Film təsviri burada göstəriləcək.
+        </p>
+
+        <!-- Film Credits: Director & Cast -->
+        <div class="modal-credits">
+          <div class="credit-row">
+            <span class="credit-label">Rejissor:</span>
+            <span class="credit-value" id="modalFilmDirector">Rejissor adı</span>
+          </div>
+          <div class="credit-row">
+            <span class="credit-label">Rollarda:</span>
+            <div class="credit-value cast-pills" id="modalFilmCast">
+              <!-- Rendered as pills -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Action Links -->
+        <div class="modal-actions-row">
+          <button type="button" class="btn-modal-toggle-list" id="btnModalToggleList">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            <span id="btnModalToggleListText">Siyahıma əlavə et</span>
+          </button>
+
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-modal-link" id="modalSourceLink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>Vikipediya / Mənbə</span>
+          </a>
+
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-modal-link" id="modalYoutubeDirectLink">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="color: #E50914;">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+            <span>YouTube-da aç</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div class="toast-notification" id="toastNotification" role="alert" aria-live="polite">
+    <svg class="toast-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    </svg>
+    <span id="toastMessage">Əməliyyat uğurla icra olundu</span>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 6.47v11.06c0 1.55 1.68 2.52 3.02 1.74l9.59-5.53c1.33-.77 1.33-2.7 0-3.48L7.02 4.73C5.68 3.95 4 4.92 4 6.47z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="logo-yerli">Yerli</span><span class="logo-flix">Flix</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Azərbaycan kinosunun zəngin irsini və müasir istedadlarını bir araya gətirən interaktiv kino kataloqu.
+          </p>
+        </div>
+
+        <div class="footer-disclaimer-card">
+          <div class="footer-disclaimer-title">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+            Hüquqi Bildiriş və Məxfilik
+          </div>
+          <p class="footer-disclaimer-text">
+            <strong>YerliFlix qeyri-rəsmi tədris layihəsidir.</strong> Bu layihənin Netflix, Inc. ilə heç bir əlaqəsi və ya tərəfdaşlığı yoxdur. Kataloqdakı filmlərin Netflix platformasında mövcud olduğu iddia edilmir. Bütün video materiallar YouTube ictimai platformasında yerləşdirilmiş rəsmi və açıq resurslardan istifadə edilməklə təqdim olunur. <em>"Siyahım"</em> bölməsinə əlavə etdiyiniz məlumatlar tamamilə yerli şəkildə yalnız cari brauzerinizin yaddaşında (<code>localStorage</code>) saxlanılır.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 YerliFlix. Bütün hüquqlar qorunur.</div>
+        <div>Müasir Azərbaycan Kinosu Portalı</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
